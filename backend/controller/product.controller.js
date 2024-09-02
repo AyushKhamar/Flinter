@@ -1,4 +1,4 @@
-import Product from "../models/product.js";
+import { Product } from "../models/product.js";
 import cloudinary from "../utils/cloudinary.js";
 import { redisClient } from "../utils/redis.js";
 
