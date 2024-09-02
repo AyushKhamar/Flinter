@@ -145,4 +145,12 @@ export const refreshToken = async (req, res) => {
       .json({ success: false, message: "Error in refresh token controller" });
   }
 };
-export const getProfile = (req, res) => {};
+export const getProfile = (req, res) => {
+  try {
+    res.status(200).json({ success: true, content: req.user });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ success: false, message: "Error in getting profile" });
+  }
+};
