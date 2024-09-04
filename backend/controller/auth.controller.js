@@ -35,6 +35,7 @@ const setCookie = (res, accessToken, refreshToken) => {
   });
 };
 export const signupController = async (req, res) => {
+  console.log("Signup controller");
   const { email, password, username } = req.body;
 
   try {
@@ -57,11 +58,13 @@ export const signupController = async (req, res) => {
       },
     });
   } catch (error) {
+    console.log(error.message);
     res.status(500).json({ success: false, message: error.message });
   }
 };
 
 export const loginController = async (req, res) => {
+  console.log("Login controller");
   const { email, password } = req.body;
   try {
     if (!email || !password)
