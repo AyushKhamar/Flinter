@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/Homepage.jsx";
 import SignupPage from "./pages/SignupPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import { useUserStore } from "./stores/useUserStore.js";
 import { useEffect } from "react";
 import LoadingSpinner from "./components/LoadingSpinner.jsx";
+import AdminPage from "./pages/AdminPage.jsx";
 function App() {
   const { user, checkAuth, checkingAuth } = useUserStore();
   console.log(user);
@@ -30,6 +31,16 @@ function App() {
           <Route
             path="/login"
             element={user ? <HomePage /> : <LoginPage />}
+          ></Route>
+          <Route
+            path="/secret-dashboard"
+            element={
+              user && user.role === "admin" ? (
+                <AdminPage />
+              ) : (
+                <Navigate to={"/"} />
+              )
+            }
           ></Route>
         </Routes>
         <Toaster />
