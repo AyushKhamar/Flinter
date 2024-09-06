@@ -54,6 +54,7 @@ export const createProduct = async (req, res) => {
     });
     return res.status(200).json({ success: true, content: product });
   } catch (error) {
+    console.log(error.message);
     return res
       .status(500)
       .json({ success: false, message: "Some error in create product" });

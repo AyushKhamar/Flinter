@@ -1,5 +1,6 @@
 import React from "react";
 import CategoryItem from "../components/CategoryItem.jsx";
+import { useCartStore } from "../stores/useCartStore.js";
 
 const categories = [
   { href: "/jeans", name: "Jeans", imageUrl: "/jeans.jpg" },
@@ -11,6 +12,8 @@ const categories = [
   { href: "/bags", name: "Bags", imageUrl: "/bags.jpg" },
 ];
 const HomePage = () => {
+  const { cart } = useCartStore();
+  console.log(cart);
   return (
     <div className="relative min-h-screen text-white overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
