@@ -19,11 +19,11 @@ const OrderSummary = () => {
 
   const handlePayment = async () => {
     const stripe = await stripePromise;
-    const res = await axios.post("/payments/create-checkout-session", {
+    const res = await axios.post("/payment/create-checkout-session", {
       products: cart,
       couponCode: coupon ? coupon.code : null,
     });
-
+    console.log(res.data, "From order summary page");
     const session = res.data;
     const result = await stripe.redirectToCheckout({
       sessionId: session.id,
