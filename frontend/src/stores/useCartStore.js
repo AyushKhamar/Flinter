@@ -20,6 +20,7 @@ export const useCartStore = create((set, get) => ({
   applyCoupon: async (code) => {
     try {
       const response = await axios.post("/coupon/validate", { code });
+      console.log(response.data, "This is apply coupon function");
       set({ coupon: response.data.content, isCouponApplied: true });
       get().calculateTotals();
       toast.success("Coupon applied successfully");

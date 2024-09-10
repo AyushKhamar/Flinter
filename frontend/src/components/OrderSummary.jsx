@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useCartStore } from "../stores/useCartStore";
+import { useCartStore } from "../stores/useCartStore.js";
 import { Link } from "react-router-dom";
 import { MoveRight } from "lucide-react";
 import { loadStripe } from "@stripe/stripe-js";
@@ -11,7 +11,7 @@ const stripePromise = loadStripe(
 
 const OrderSummary = () => {
   const { total, subtotal, coupon, isCouponApplied, cart } = useCartStore();
-
+  console.log(coupon);
   const savings = subtotal - total;
   const formattedSubtotal = subtotal.toFixed(2);
   const formattedTotal = total.toFixed(2);
@@ -19,11 +19,11 @@ const OrderSummary = () => {
 
   const handlePayment = async () => {
     const stripe = await stripePromise;
-    const res = await axios.post("/payment/create-checkout-session", {
+    const res = await axios.post("/payments/create-checkout-session", {
       products: cart,
       couponCode: coupon ? coupon.code : null,
     });
-    console.log(res.data, "From order summary page");
+
     const session = res.data;
     const result = await stripe.redirectToCheckout({
       sessionId: session.id,
