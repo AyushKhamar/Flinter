@@ -12,6 +12,7 @@
   "dependencies": {
     "@stripe/stripe-js": "^4.4.0",
     "axios": "^1.7.7",
+    "flinter": "file:..",
     "framer-motion": "^11.3.31",
     "lucide-react": "^0.438.0",
     "react": "^18.3.1",

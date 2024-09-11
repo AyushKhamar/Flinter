@@ -1,5 +1,4 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import HomePage from "./pages/Homepage.jsx";
 import SignupPage from "./pages/SignupPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import Navbar from "./components/Navbar.jsx";
@@ -13,6 +12,7 @@ import CartPage from "./pages/CartPage.jsx";
 import { useCartStore } from "./stores/useCartStore.js";
 import PurchaseSuccessPage from "./pages/PurchaseSuccessPage.jsx";
 import PurchaseCancelPage from "./pages/PurchaseCancelPage.jsx";
+import HomePage from "./pages/HomePage.jsx";
 function App() {
   const { user, checkAuth, checkingAuth } = useUserStore();
   const { getCartItems } = useCartStore();
