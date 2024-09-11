@@ -15,6 +15,7 @@ const app = express();
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+const __dirname = path.resolve();
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/product", productRouter);
