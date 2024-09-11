@@ -8,6 +8,7 @@ import { cartRouter } from "./routes/cart.route.js";
 import { couponRouter } from "./routes/coupon.route.js";
 import { paymentRouter } from "./routes/payment.route.js";
 import { analyticsRouter } from "./routes/analytics.route.js";
+import path from "path";
 dotenv.config();
 
 const app = express();
@@ -22,6 +23,13 @@ app.use("/api/v1/coupon", couponRouter);
 app.use("/api/v1/payment", paymentRouter);
 app.use("/api/v1/analytics", analyticsRouter);
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+  });
+}
 app.listen(process.env.PORT || 3000, () => {
   console.log(`Listening on port ${process.env.PORT}`);
   connectDb();

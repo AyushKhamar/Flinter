@@ -34,10 +34,12 @@ export const validateCoupon = async (req, res) => {
         .json({ success: false, message: "Coupon expired" });
     }
     res.status(200).json({
-      success: true,
-      message: "Coupon is valid",
-      code: coupon.code,
-      discountPercentage: coupon.discountPercentage,
+      content: {
+        success: true,
+        message: "Coupon is valid",
+        code: coupon.code,
+        discountPercentage: coupon.discountPercentage,
+      },
     });
   } catch (error) {
     res
